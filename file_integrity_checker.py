@@ -1,4 +1,4 @@
-# Adapted from codedbyBisma/File_Integrity_Checker. See README.md.
+
 import hashlib
 import json
 import os
