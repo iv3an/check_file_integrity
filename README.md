@@ -24,6 +24,10 @@ A small personal learning project I worked on to understand how hashing works an
 
 HASHWATCH saves a file’s **SHA-256 and MD5 hashes**, then compares them later to report **unchanged**, **modified**, or **missing** files.
 
+### Demo
+
+![HASHWATCH demo](assets/demo.png)
+
 ### Install & Run
 
 Linux / WSL — requires Python 3, venv, and curl.
