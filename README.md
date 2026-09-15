@@ -47,9 +47,31 @@ Python 3 required. Colorama adds terminal colors and is optional.
 
 Reads files in **4096-byte chunks**, calculates **SHA-256 + MD5**, and saves fingerprints in `baseline.json`. Both hashes must match. Adding a file again updates its baseline.
 
-### Quick test
+### Install & Run
 
-Add a test file → edit it → check for `MODIFIED`.
-Delete it → check for `MISSING`.
+On Linux / WSL, with Python 3 and curl installed:
 
-Checks run on demand. Keep your baseline trusted. Set `NO_ANIMATION=1` to disable the startup animation.
+```bash
+# Download the project
+curl -fL https://github.com/iv3an/file_integrity/archive/HEAD.tar.gz -o hashwatch.tar.gz
+mkdir -p hashwatch
+tar -xzf hashwatch.tar.gz -C hashwatch --strip-components=1
+cd hashwatch
+
+# Set up and install
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# Launch
+python file_integrity_checker.py
+```
+
+### How to use
+
+1. Select **1** and enter file paths separated by commas to save their hashes.
+2. Select **2** to check for **UNCHANGED**, **MODIFIED**, or **MISSING** files.
+3. Select **3** to view your saved baseline.
+4. Select **4** to exit.
+
+**Quick demo:** Run `echo "hello" > test.txt`, add `test.txt` with option **1**, then run `echo "changed" >> test.txt` in another terminal in the same folder. Select **2** to detect the change.
