@@ -1,77 +1,78 @@
 <div align="center">
 <pre>
- ██╗  ██╗ █████╗ ███████╗██╗  ██╗
- ██║  ██║██╔══██╗██╔════╝██║  ██║
- ███████║███████║███████╗███████║
- ██╔══██║██╔══██║╚════██║██╔══██║
- ██║  ██║██║  ██║███████║██║  ██║
- ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
-       W  A  T  C  H
- ─────────────────────────────────
-   [#] EVERY BYTE HAS A FINGERPRINT
-       BASELINE · VERIFY · DETECT
+██╗  ██╗ █████╗ ███████╗██╗  ██╗
+██║  ██║██╔══██╗██╔════╝██║  ██║
+███████║███████║███████╗███████║
+██╔══██║██╔══██║╚════██║██╔══██║
+██║  ██║██║  ██║███████║██║  ██║
+╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+        W  A  T  C  H
 </pre>
-</div>
+
+
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![JSON](https://img.shields.io/badge/JSON-292929?style=flat&logo=json&logoColor=white)
-![SHA-256 + MD5](https://img.shields.io/badge/hashlib-SHA--256%20%2B%20MD5-16a085?style=flat)
+![Hashlib](https://img.shields.io/badge/Hashlib-SHA--256%20%2B%20MD5-16a085?style=flat)
 ![Colorama](https://img.shields.io/badge/CLI-Colorama-8b5cf6?style=flat)
-
-
 
 </div>
 
-Python tool that detects file changes using SHA-256 and MD5 hashes. It compares files against a saved baseline to identify modified, missing, or unchanged files useful for checking important files for unexpected changes.
+### About
 
+A small personal learning project I worked on to understand how hashing works and how it can detect file changes.
 
-### Run
-
-```bash
-pip install -r requirements.txt
-python file_integrity_checker.py
-```
-
-Python 3 required. Colorama adds terminal colors and is optional.
-
-### Controls
-
-| Option | Action |
-| :---: | :--- |
-| **1** | Add files to the baseline |
-| **2** | Detect unchanged, modified, or missing files |
-| **3** | View saved hashes and timestamps |
-| **4** | Exit |
-
-### Under the hood
-
-Reads files in **4096-byte chunks**, calculates **SHA-256 + MD5**, and saves fingerprints in `baseline.json`. Both hashes must match. Adding a file again updates its baseline.
+HASHWATCH saves a file’s **SHA-256 and MD5 hashes**, then compares them later to report **unchanged**, **modified**, or **missing** files.
 
 ### Install & Run
 
-On Linux / WSL, with Python 3 and curl installed:
+Linux / WSL — requires Python 3, venv, and curl.
 
 ```bash
-# Download the project
 curl -fL https://github.com/iv3an/file_integrity/archive/HEAD.tar.gz -o hashwatch.tar.gz
 mkdir -p hashwatch
 tar -xzf hashwatch.tar.gz -C hashwatch --strip-components=1
 cd hashwatch
 
-# Set up and install
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
-
-# Launch
+python -m pip install -r requirements.txt
 python file_integrity_checker.py
 ```
 
-### How to use
+If creating the virtual environment fails, install the venv package named in your terminal’s error message, then retry.
 
-1. Select **1** and enter file paths separated by commas to save their hashes.
-2. Select **2** to check for **UNCHANGED**, **MODIFIED**, or **MISSING** files.
-3. Select **3** to view your saved baseline.
-4. Select **4** to exit.
+### How to Use
 
-**Quick demo:** Run `echo "hello" > test.txt`, add `test.txt` with option **1**, then run `echo "changed" >> test.txt` in another terminal in the same folder. Select **2** to detect the change.
+| Option | What it does |
+| :---: | :--- |
+| **1** | Save a baseline — enter file paths separated by commas |
+| **2** | Check files against the saved baseline |
+| **3** | View saved hashes and timestamps |
+| **4** | Exit |
+
+### Test It
+
+Create a test file before launching:
+
+```bash
+echo "hello" > test.txt
+```
+
+Select **1**, enter `test.txt`, then select **2** → **UNCHANGED**.
+
+In another terminal in the same folder:
+
+```bash
+echo "changed" >> test.txt
+```
+
+Select **2** again → **MODIFIED**.
+
+```bash
+mv test.txt test-backup.txt
+```
+
+Select **2** again → **MISSING**.
+
+> Baselines are stored in `baseline.json`. Adding a file again replaces its baseline. Checks run only when you select option 2.
