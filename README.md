@@ -26,7 +26,7 @@ HASHWATCH saves a file’s **SHA-256 and MD5 hashes**, then compares them later 
 
 ### Demo
 
-![HASHWATCH demo](assets/demo.png)
+![HASHWATCH demo](/demo.png)
 
 ### Install & Run
 
