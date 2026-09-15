@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320">
+<defs><linearGradient id="bg"><stop stop-color="#091323"/><stop offset="1" stop-color="#152943"/></linearGradient><linearGradient id="accent"><stop stop-color="#59f5ce"/><stop offset="1" stop-color="#60a5fa"/></linearGradient></defs>
+<rect width="1200" height="320" rx="24" fill="url(#bg)"/>
+<g stroke="#60a5fa" opacity=".09"><path d="M0 80H1200M0 160H1200M0 240H1200M240 0V320M480 0V320M720 0V320M960 0V320"/></g>
+<path d="M117 87L182 112V166Q182 211 117 240Q52 211 52 166V112Z" fill="#59f5ce" fill-opacity=".08" stroke="#59f5ce" stroke-width="3"/>
+<text x="117" y="184" fill="#59f5ce" text-anchor="middle" font-family="monospace" font-size="60">#</text>
+<text x="225" y="91" fill="#59f5ce" font-family="monospace" font-size="15" letter-spacing="4">BASELINE / VERIFY / DETECT</text>
+<text x="220" y="164" fill="#eef6ff" font-family="Segoe UI,Arial,sans-serif" font-weight="700" font-size="68" letter-spacing="7">HASHWATCH</text>
+<text x="225" y="207" fill="#a9bdd4" font-family="monospace" font-size="20">Every byte leaves a fingerprint.</text>
+<rect x="225" y="239" width="310" height="3" rx="1.5" fill="url(#accent)"/>
+<text x="1145" y="287" text-anchor="end" fill="#86a4c4" font-family="monospace" font-size="14">SHA-256 + MD5 / PYTHON</text>
+</svg>
