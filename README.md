@@ -18,7 +18,7 @@
 ![SHA-256 + MD5](https://img.shields.io/badge/hashlib-SHA--256%20%2B%20MD5-16a085?style=flat)
 ![Colorama](https://img.shields.io/badge/CLI-Colorama-8b5cf6?style=flat)
 
-Save a baseline. Check the bytes. Spot the change.
+
 
 </div>
 
