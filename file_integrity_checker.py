@@ -1,4 +1,3 @@
-
 import hashlib
 import json
 import os
@@ -30,19 +29,42 @@ def warning(msg):
 def error(msg):
     print(f"{Fore.RED}[ALERT]{Style.RESET_ALL} {msg}" if COLOR else f"[ALERT] {msg}")
 
+def styled(text, color="CYAN", bright=False):
+    if COLOR and sys.stdout.isatty() and "NO_COLOR" not in os.environ:
+        return getattr(Fore, color) + (Style.BRIGHT if bright else "") + text + Style.RESET_ALL
+    return text
+
+
 def banner():
-    lines = [
-        "+-----------------------------------------------------+",
-        "|  [#]  H A S H W A T C H                              |",
-        "|       FILE INTEGRITY CHECKER                        |",
-        "|       SHA-256 + MD5  /  BASELINE > VERIFY            |",
-        "+-----------------------------------------------------+",
+    logo = [
+        "██╗  ██╗ █████╗ ███████╗██╗  ██╗",
+        "██║  ██║██╔══██╗██╔════╝██║  ██║",
+        "███████║███████║███████╗███████║",
+        "██╔══██║██╔══██║╚════██║██╔══██║",
+        "██║  ██║██║  ██║███████║██║  ██║",
+        "╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝",
     ]
-    for line in lines:
-        print(Fore.CYAN + Style.BRIGHT + line if COLOR else line)
-        # Animate only in an interactive terminal.
+    # Use plain text if the terminal cannot display block characters.
+    try:
+        "".join(logo).encode(sys.stdout.encoding or "utf-8")
+    except (UnicodeEncodeError, LookupError):
+        logo = ["##  ##   ##    ####  ##  ##",
+                "##  ##  #  #  ##     ##  ##",
+                "######  ####   ###   ######",
+                "##  ##  #  #     ##  ##  ##",
+                "##  ##  #  #  ####   ##  ##"]
+
+    print()
+    for index, line in enumerate(logo):
+        print(styled("    " + line, "CYAN" if index < 3 else "BLUE", True), flush=True)
         if sys.stdout.isatty() and not os.getenv("NO_ANIMATION"):
             time.sleep(0.045)
+    print(styled("            W  A  T  C  H", "WHITE", True))
+    print(styled("    " + "-" * 42, "BLUE"))
+    print(styled("    [#] EVERY BYTE HAS A FINGERPRINT", "CYAN"))
+    print("        BASELINE / VERIFY / DETECT")
+    print(styled("        SHA-256 + MD5  |  FILE INTEGRITY", "BLUE"))
+    print(styled("    " + "-" * 42, "BLUE"))
 
 
 # Hash the same bytes with both algorithms.
@@ -158,11 +180,13 @@ def view_baseline():
 def main_menu():
     banner()
     while True:
-        print("\n1. Add file(s) to baseline (start monitoring)")
-        print("2. Check integrity (compare current vs baseline)")
-        print("3. View current baseline")
-        print("4. Exit")
-        choice = input("\nhashwatch > Select (1-4): ").strip()
+        print(styled("\n    CONTROL PANEL", "WHITE", True))
+        for key, label in (("1", "Add files to baseline"),
+                           ("2", "Check file integrity"),
+                           ("3", "View saved baseline"),
+                           ("4", "Exit")):
+            print(styled(f"    [{key}] ", "CYAN", True) + label)
+        choice = input(styled("\n    hashwatch > ", "CYAN", True)).strip()
 
         if choice == "1":
             add_files_to_baseline()
