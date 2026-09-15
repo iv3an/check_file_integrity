@@ -22,6 +22,9 @@
 
 </div>
 
+Python tool that detects file changes using SHA-256 and MD5 hashes. It compares files against a saved baseline to identify modified, missing, or unchanged files—useful for checking important files for unexpected changes.
+
+
 ### Run
 
 ```bash
