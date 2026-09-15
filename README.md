@@ -1,8 +1,26 @@
-<p align="center"><img src="assets/banner.svg" alt="HASHWATCH — Every byte leaves a fingerprint." width="100%"></p>
+<div align="center">
+<pre>
+ ██╗  ██╗ █████╗ ███████╗██╗  ██╗
+ ██║  ██║██╔══██╗██╔════╝██║  ██║
+ ███████║███████║███████╗███████║
+ ██╔══██║██╔══██║╚════██║██╔══██║
+ ██║  ██║██║  ██║███████║██║  ██║
+ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+       W  A  T  C  H
+ ─────────────────────────────────
+   [#] EVERY BYTE HAS A FINGERPRINT
+       BASELINE · VERIFY · DETECT
+</pre>
+</div>
 
-<p align="center"><b>Save a baseline. Check the bytes. Spot the change.</b></p>
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![JSON](https://img.shields.io/badge/JSON-292929?style=flat&logo=json&logoColor=white)
+![SHA-256 + MD5](https://img.shields.io/badge/hashlib-SHA--256%20%2B%20MD5-16a085?style=flat)
+![Colorama](https://img.shields.io/badge/CLI-Colorama-8b5cf6?style=flat)
 
-A small Python CLI that compares files against saved **SHA-256 + MD5** fingerprints. Includes colored status messages and a quick terminal banner animation.
+Save a baseline. Check the bytes. Spot the change.
+
+</div>
 
 ### Run
 
@@ -11,25 +29,24 @@ pip install -r requirements.txt
 python file_integrity_checker.py
 ```
 
-Python 3 required. Colorama is optional; plain-text output works without it.
+Python 3 required. Colorama adds terminal colors and is optional.
 
-### The menu
+### Controls
 
 | Option | Action |
-| :--- | :--- |
-| **1** | Save one or more files to the baseline (comma-separated paths) |
-| **2** | Check for **UNCHANGED**, **MODIFIED**, or **MISSING** files |
-| **3** | Show stored hashes and timestamps |
+| :---: | :--- |
+| **1** | Add files to the baseline |
+| **2** | Detect unchanged, modified, or missing files |
+| **3** | View saved hashes and timestamps |
 | **4** | Exit |
 
-Hashes are calculated in **4096-byte chunks** and saved in `baseline.json` in your working directory. Both hashes must match for an unchanged result. Adding an existing path again replaces its baseline.
+### Under the hood
 
-### Try it
+Reads files in **4096-byte chunks**, calculates **SHA-256 + MD5**, and saves fingerprints in `baseline.json`. Both hashes must match. Adding a file again updates its baseline.
 
-Add a test file with option **1**, edit and save it, then choose **2** to see `MODIFIED`. Delete the test file and check again to see `MISSING`.
+### Quick test
 
-<sub>Checks run on demand. A match means the file matches the saved baseline; it does not prove the file is safe. Keep your baseline trusted. Set NO_ANIMATION=1 to disable the startup effect.</sub>
+Add a test file → edit it → check for `MODIFIED`.
+Delete it → check for `MISSING`.
 
-### Credits
-
-Adapted from [Bisma's File Integrity Checker](https://github.com/codedbyBisma/File_Integrity_Checker). This version adds HASHWATCH branding, short comments, and terminal presentation changes while preserving the supplied hashing and comparison logic. No upstream license was included in the supplied material.
+Checks run on demand. Keep your baseline trusted. Set `NO_ANIMATION=1` to disable the startup animation.
