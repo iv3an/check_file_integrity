@@ -55,28 +55,3 @@ If creating the virtual environment fails, install the venv package named in you
 | **3** | View saved hashes and timestamps |
 | **4** | Exit |
 
-### Test It
-
-Create a test file before launching:
-
-```bash
-echo "hello" > test.txt
-```
-
-Select **1**, enter `test.txt`, then select **2** → **UNCHANGED**.
-
-In another terminal in the same folder:
-
-```bash
-echo "changed" >> test.txt
-```
-
-Select **2** again → **MODIFIED**.
-
-```bash
-mv test.txt test-backup.txt
-```
-
-Select **2** again → **MISSING**.
-
-> Baselines are stored in `baseline.json`. Adding a file again replaces its baseline. Checks run only when you select option 2.
